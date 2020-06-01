@@ -1,0 +1,3 @@
+﻿Jak widać na wykresach, algorytm podstawowy prezentuje się w postaci funkcji liniowej - O(N).
+
+Lepsze wersje algorytmu prezentują się w postaci funkcji wielomianowej, konkretnie pierwiastka kwadratowego z N - O(N ^ 0.5).

@@ -1,0 +1,11 @@
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\bin\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.exe
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\bin\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.deps.json
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\bin\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.runtimeconfig.json
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\bin\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.runtimeconfig.dev.json
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\bin\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.dll
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\bin\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.pdb
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\obj\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.csprojAssemblyReference.cache
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\obj\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.AssemblyInfoInputs.cache
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\obj\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.AssemblyInfo.cs
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\obj\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.dll
+C:\Users\Darek\source\repos\Liczby Pierwsze - Projekt\Liczby Pierwsze - Projekt\obj\Debug\netcoreapp3.1\Liczby Pierwsze - Projekt.pdb
