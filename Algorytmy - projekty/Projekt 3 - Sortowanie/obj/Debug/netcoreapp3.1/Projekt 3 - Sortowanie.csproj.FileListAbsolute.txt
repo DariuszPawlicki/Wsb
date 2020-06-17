@@ -1,0 +1,13 @@
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\bin\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.exe
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\bin\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.deps.json
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\bin\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.runtimeconfig.json
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\bin\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.runtimeconfig.dev.json
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\bin\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.dll
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\bin\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.pdb
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.csprojAssemblyReference.cache
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.AssemblyInfoInputs.cache
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.AssemblyInfo.cs
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.csproj.CoreCompileInputs.cache
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.dll
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.pdb
+C:\Users\Darek\Desktop\wsb\Algorytmy - projekty\Projekt 3 - Sortowanie\obj\Debug\netcoreapp3.1\Projekt 3 - Sortowanie.genruntimeconfig.cache
