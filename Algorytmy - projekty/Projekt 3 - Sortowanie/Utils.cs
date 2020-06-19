@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Reflection.Metadata;
 using System.Text;
 
 namespace Utilities
@@ -100,53 +102,83 @@ namespace Utilities
             return watch.ElapsedMilliseconds;
         }
 
-        public static void WriteDataToFile(Dictionary<String, int[]> results)
-        {
-
-        }
-
-        public static void IterateResultsDictionary(Object results)
+        public static void IterateResultsDictionary(Object results, bool results_to_csv = false)
         {
             String separator1 = new String('-', 30);
             String separator2 = new String('*', 30);
 
-            ArrayList communicates = new ArrayList();
+            String new_line = Environment.NewLine;
+
+            ArrayList measurements;
+
+            if (results_to_csv == false)
+                measurements = new ArrayList();
+            else
+                measurements = new ArrayList()
+                {
+                    "Sortowanie,", "RozmiarTablicy,", "MetodaInicjalizacji,", "CzasSortowania", new_line
+                };
+
 
             foreach (KeyValuePair<String, Object> method_dict in (Dictionary<String, Object>)results)
             {
-                communicates.Add(separator1 + Environment.NewLine);
+                if(results_to_csv == false)
+                    measurements.Add(separator1 + new_line);
+
                 Console.WriteLine(separator1);
 
-                communicates.Add("Sortowanie: " + method_dict.Key + Environment.NewLine + Environment.NewLine);
+                if (results_to_csv == false)
+                    measurements.Add("Sortowanie: " + method_dict.Key + new_line + new_line);
+                
                 Console.WriteLine("Sortowanie: " + method_dict.Key + "\n");
 
                 foreach (KeyValuePair<int, Object> size_dict in (Dictionary<int, Object>)method_dict.Value)
                 {
-                    communicates.Add("Rozmiar tablicy: " + size_dict.Key + Environment.NewLine + Environment.NewLine);
+                    if (results_to_csv == false)
+                        measurements.Add("Rozmiar tablicy: " + size_dict.Key + new_line + new_line);
+
                     Console.WriteLine("Rozmiar tablicy: " + size_dict.Key + "\n");
 
                     foreach (KeyValuePair<String, long> init_type_dict in (Dictionary<String, long>)size_dict.Value)
                     {
-                        communicates.Add("Metoda inicjalizacji tablicy: " + init_type_dict.Key + Environment.NewLine);
-                        Console.WriteLine("Metoda inicjalizacji tablicy: " + init_type_dict.Key + "\n");
+                        if (results_to_csv == false) {
+                            measurements.Add("Metoda inicjalizacji tablicy: " + init_type_dict.Key + new_line);
+                            measurements.Add("Czas sortowania: " + init_type_dict.Value + "ms" + new_line + new_line);
+                        }
+                        else {
+                            measurements.Add(method_dict.Key + ",");
+                            measurements.Add(size_dict.Key + ",");
+                            measurements.Add(init_type_dict.Key + ",");
+                            measurements.Add(init_type_dict.Value + new_line);
+                        }
 
-                        communicates.Add("Czas sortowania: " + init_type_dict.Value + "ms" + Environment.NewLine + Environment.NewLine);
+                        Console.WriteLine("Metoda inicjalizacji tablicy: " + init_type_dict.Key + "\n");
                         Console.WriteLine("Czas sortowania: " + init_type_dict.Value + "ms" + "\n");
+                                                   
                     }
 
-                    communicates.Add(separator2 + Environment.NewLine);
+                    if (results_to_csv == false)
+                        measurements.Add(separator2 + new_line);
+
                     Console.WriteLine(separator2);
                 }
             }
 
             String path = "C:\\Users\\Darek\\Desktop\\wsb\\Algorytmy - projekty\\Projekt 3 - Sortowanie\\";
 
-            WriteDataToFile(communicates, path, "komunikaty");
+            WriteDataToFile(measurements, path, "pomiary", csv: results_to_csv);
         }
 
-        public static void WriteDataToFile(ArrayList data, String path, String filename)
+        public static void WriteDataToFile(ArrayList data, String path, String filename, bool csv = false)
         {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + filename + ".txt"))
+            String extension;
+
+            if (csv == true)
+                extension = ".csv";
+            else
+                extension = ".txt";
+
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + filename + extension))
             {
                 foreach (String line in data)
                 {
