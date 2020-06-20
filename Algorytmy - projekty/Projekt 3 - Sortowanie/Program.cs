@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using SortingMethods;
 using Utilities;
@@ -8,11 +10,21 @@ namespace Projekt_3___Sortowanie
 {
     class Program
     {
+
+        static Func<T[], int>[] ReturnFuncOfType<T>() where T : IComparable // Zwraca obiekt zawierający tablicę odwołań do wszystkich metod sortujących,
+                                                                           //  typ generyczny określa typ tablicy na jakiej operować będą metody sortujące
+        {
+            Func<T[], int>[] sorting_methods = {Sorting.InsertionSort, Sorting.SelectionSort,
+                                                Sorting.HeapSort, Sorting.CocktailSort};
+
+            return sorting_methods;
+        }
+
+
         static void Main(string[] args)
         {
 
-            Func<int[], int>[] sorting_methods = {Sorting.InsertionSort, Sorting.SelectionSort,
-                                                  Sorting.HeapSort, Sorting.CocktailSort};
+            Func<double[], int>[] sorting_methods = ReturnFuncOfType<double>();
 
             IEnumerable<int> sizes_range = Enumerable.Range(1, 20).Select(x => 2500 * x);
 
@@ -23,7 +35,7 @@ namespace Projekt_3___Sortowanie
             Dictionary<int, Object> results_by_size;
             Dictionary<String, long> results_by_init;
 
-            foreach (Func<int[], int> method in sorting_methods)
+            foreach (Func<double[], int> method in sorting_methods)
             {
                 results_by_size = new Dictionary<int, Object>();             
 
@@ -33,8 +45,12 @@ namespace Projekt_3___Sortowanie
 
                     foreach (String init_type in init_types)
                     {
-                        int[] tmp_arr = Utils.InitArray(size, init_type);
-                        long time = Utils.TimeMeasurement(method, tmp_arr);
+                        Console.WriteLine("Sortowanie: " + method.Method.Name);
+                        Console.WriteLine("Rozmiar: " + size);
+                        Console.WriteLine("Typ inicjalizacji: " + init_type);
+
+                        double[] tmp_arr = Utils.InitArray<double>(size, init_type);
+                        long time = Utils.TimeMeasurement<double>(method, tmp_arr);
 
                         results_by_init[init_type] = time;
                     }
@@ -46,8 +62,7 @@ namespace Projekt_3___Sortowanie
             }
 
             Utils.IterateResultsDictionary(results_by_method, results_to_csv: true);
-            
-            Console.ReadKey();
+
         }
     }
 }

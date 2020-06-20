@@ -1,50 +1,62 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Reflection.Metadata;
+using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace Utilities
 {
     public static class Utils
     {
-        public static int[] InitArray(int size, String init_type)
+        public static T[] InitArray<T>(int size, String init_type)
         {
-            int[] arr = new int[size];
+            T[] arr = new T [size];
 
             if (init_type == "random")
             {
                 Random rnd = new Random(Guid.NewGuid().GetHashCode());
 
+                T item;
+
                 for (int i = 0; i < size; i++)
                 {
-                    arr[i] = rnd.Next(size);
+                    item = (T)Convert.ChangeType(rnd.Next(size), typeof(T));
+                    arr[i] = item;
                 }
             }
             else if (init_type == "ascending")
             {
+                T item;
+
                 for (int i = 0; i < size; i++)
                 {
-                    arr[i] = i;
+                    item = (T)Convert.ChangeType(i, typeof(T));
+                    arr[i] = item;
                 }
             }
             else if (init_type == "descending")
             {
                 int j = 0;
 
+                T item;
+
                 for (int i = size - 1; i >= 0; i--)
                 {
-                    arr[i] = j;
+                    item = (T)Convert.ChangeType(j, typeof(T));
+                    arr[i] = item;
+
                     j++;
                 }
             }
             else if (init_type == "constant")
             {
+                T item;
+
                 for (int i = 0; i < size; i++)
                 {
-                    arr[i] = 1;
+                    item = (T)Convert.ChangeType(1, typeof(T));
+                    arr[i] = item;
                 }
             }
             else if (init_type == "v-shape")
@@ -54,12 +66,13 @@ namespace Utilities
                 if (size % 2 == 0)
                 {
                     mid_index = (size / 2) - 1;
-                    arr[arr.Length - 1] = arr.Length;
+
+                    arr[arr.Length - 1] = (T)Convert.ChangeType(arr.Length, typeof(T));
                 }
                 else
                     mid_index = size / 2;
 
-                arr[mid_index] = 1;
+                arr[mid_index] = (T)Convert.ChangeType(1, typeof(T));
 
                 int i = mid_index - 1;
                 int j = mid_index + 1;
@@ -68,8 +81,8 @@ namespace Utilities
 
                 while (i >= 0)
                 {
-                    arr[j] = ++x;
-                    arr[i] = ++x;
+                    arr[j] = (T)Convert.ChangeType(++x, typeof(T));
+                    arr[i] = (T)Convert.ChangeType(++x, typeof(T));
 
                     --i;
                     ++j;
@@ -81,7 +94,7 @@ namespace Utilities
             return arr;
         }
 
-        public static void PrintArray(int[] arr)
+        public static void PrintArray<T>(T[] arr)
         {
             foreach (var item in arr)
             {
@@ -92,7 +105,7 @@ namespace Utilities
             Console.WriteLine("\n");
         }
 
-        public static long TimeMeasurement(Func<int[], int> sorting_method, int[] arr)
+        public static long TimeMeasurement<T>(Func<T[], int> sorting_method, T[] arr)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             sorting_method(arr);
@@ -166,7 +179,7 @@ namespace Utilities
 
             String path = "C:\\Users\\Darek\\Desktop\\wsb\\Algorytmy - projekty\\Projekt 3 - Sortowanie\\";
 
-            WriteDataToFile(measurements, path, "pomiary", csv: results_to_csv);
+            WriteDataToFile(measurements, path, "pomiary_double", csv: results_to_csv);
         }
 
         public static void WriteDataToFile(ArrayList data, String path, String filename, bool csv = false)

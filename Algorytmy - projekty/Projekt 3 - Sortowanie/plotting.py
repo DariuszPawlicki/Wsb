@@ -3,12 +3,12 @@ import pandas as pd
 
 
 if __name__ == "__main__":
-    data = pd.read_csv("pomiary.csv")
+
+    data = pd.read_csv("Interpretacja Wyników/pomiary_int.csv")
 
     font_size = 8
 
     results_by_methods = {}
-
 
     for method in data["Sortowanie"].unique():
         results_by_methods[method] = data[data["Sortowanie"] == method]
@@ -31,7 +31,7 @@ if __name__ == "__main__":
         fig.text(0.03, 0.5, "Czas Sortowania (ms)", va = "center",
                  rotation = "vertical")
 
-        fig.suptitle(method)
+        fig.suptitle(method + " - Typ Integer")
 
         size = results_by_methods[method]["RozmiarTablicy"]
         init_type = results_by_methods[method]["MetodaInicjalizacji"]
@@ -62,6 +62,6 @@ if __name__ == "__main__":
                     label="V-Shape", s=8, c = "y")
         ax5.legend()
 
-        plt.savefig("Wykresy/{}.png".format(method))
+        plt.savefig("Wykresy - Integer/{}.png".format(method))
 
 

@@ -5,14 +5,34 @@ namespace SortingMethods
 {
     public static class Sorting
     {
-        public static int InsertionSort(int[] t)
+        public static bool IsGreaterThan<T>(T x, T y) where T: IComparable
         {
+            return x.CompareTo(y) > 0;
+        }
+
+        public static bool IsLowerThan<T>(T x, T y) where T: IComparable
+        {
+            return x.CompareTo(y) < 0;
+        }
+
+        public static bool AreEqual<T>(T x, T y) where T: IComparable
+        {
+            return x.CompareTo(y) == 0;
+        }
+
+        public static bool IsGreaterEqual<T>(T x, T y) where T: IComparable
+        {
+            return x.CompareTo(y) >= 0;
+        }
+
+        public static int InsertionSort<T>(T[] t) where T : IComparable
+        {           
             for (uint i = 1; i < t.Length; i++)
             {
                 uint j = i;
-                int Buf = t[j];
+                T Buf = t[j];
 
-                while ((j > 0) && (t[j - 1] > Buf))
+                while ((j > 0) && (IsGreaterThan(t[j - 1], Buf)))
                 {
                     t[j] = t[j - 1];
                     j--;
@@ -24,16 +44,16 @@ namespace SortingMethods
             return 1;
         }
 
-        public static int SelectionSort(int[] t)
+        public static int SelectionSort<T>(T[] t) where T : IComparable
         {
             uint k;
 
             for (uint i = 0; i < (t.Length - 1); i++)
             {
-                int Buf = t[i];
+                var Buf = t[i];
                 k = i;
                 for (uint j = i + 1; j < t.Length; j++)
-                    if (t[j] < Buf)
+                    if (IsLowerThan(t[j], Buf))
                     {
                         k = j;
                         Buf = t[j];
@@ -42,26 +62,26 @@ namespace SortingMethods
                 t[k] = t[i];
                 t[i] = Buf;
             }
-
+            
             return 1;
         }
 
-        public static int CocktailSort(int[] t)
+        public static int CocktailSort<T>(T[] t) where T : IComparable
         {
             int Left = 1, Right = t.Length - 1, k = t.Length - 1;
             do
             {
                 for (int j = Right; j >= Left; j--)
-                    if (t[j - 1] > t[j])
+                    if (IsGreaterThan(t[j - 1], t[j]))
                     {
-                        int Buf = t[j - 1]; t[j - 1] = t[j]; t[j] = Buf;
+                        var Buf = t[j - 1]; t[j - 1] = t[j]; t[j] = Buf;
                         k = j;
                     }
                 Left = k + 1;
                 for (int j = Left; j <= Right; j++)
-                    if (t[j - 1] > t[j])
+                    if (IsGreaterThan(t[j - 1], t[j]))
                     {
-                        int Buf = t[j - 1]; t[j - 1] = t[j]; t[j] = Buf;
+                        var Buf = t[j - 1]; t[j - 1] = t[j]; t[j] = Buf;
                         k = j;
                     }
                 Right = k - 1;
@@ -71,19 +91,19 @@ namespace SortingMethods
             return 1;
         }
 
-        public static void Heapify(int[] t, uint left, uint right)
+        public static void Heapify<T>(T[] t, uint left, uint right) where T : IComparable
         {
             uint i = left,
 
             j = 2 * i + 1;
 
-            int buf = t[i];
+            var buf = t[i];
 
             while (j <= right)
             {
                 if (j < right)
-                    if (t[j] < t[j + 1]) j++;
-                if (buf >= t[j]) break;
+                    if (IsLowerThan(t[j], t[j + 1])) j++;
+                if (IsGreaterEqual(buf, t[j])) break;
                 t[i] = t[j];
                 i = j;
                 j = 2 * i + 1;
@@ -92,7 +112,7 @@ namespace SortingMethods
             t[i] = buf;
         }
 
-        public static int HeapSort(int[] t)
+        public static int HeapSort<T>(T[] t) where T : IComparable
         {
             uint left = ((uint)t.Length / 2),
                  right = (uint)t.Length - 1;
@@ -104,7 +124,7 @@ namespace SortingMethods
             }
             while (right > 0)
             {
-                int buf = t[left];
+                var buf = t[left];
                 t[left] = t[right];
                 t[right] = buf;
                 right--;
