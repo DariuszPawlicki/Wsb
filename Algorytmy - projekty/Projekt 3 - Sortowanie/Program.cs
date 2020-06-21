@@ -20,13 +20,11 @@ namespace Projekt_3___Sortowanie
             return sorting_methods;
         }
 
-
-        static void Main(string[] args)
+        static void SortingMethodsTest(int measurement_points, bool save_results = false)
         {
-
             Func<double[], int>[] sorting_methods = ReturnFuncOfType<double>();
 
-            IEnumerable<int> sizes_range = Enumerable.Range(1, 20).Select(x => 2500 * x);
+            IEnumerable<int> sizes_range = Enumerable.Range(1, measurement_points).Select(x => 2500 * x);
 
             String[] init_types = { "random", "ascending", "descending", "constant", "v-shape" };
 
@@ -37,7 +35,7 @@ namespace Projekt_3___Sortowanie
 
             foreach (Func<double[], int> method in sorting_methods)
             {
-                results_by_size = new Dictionary<int, Object>();             
+                results_by_size = new Dictionary<int, Object>();
 
                 foreach (int size in sizes_range)
                 {
@@ -45,10 +43,6 @@ namespace Projekt_3___Sortowanie
 
                     foreach (String init_type in init_types)
                     {
-                        Console.WriteLine("Sortowanie: " + method.Method.Name);
-                        Console.WriteLine("Rozmiar: " + size);
-                        Console.WriteLine("Typ inicjalizacji: " + init_type);
-
                         double[] tmp_arr = Utils.InitArray<double>(size, init_type);
                         long time = Utils.TimeMeasurement<double>(method, tmp_arr);
 
@@ -61,8 +55,52 @@ namespace Projekt_3___Sortowanie
                 results_by_method[method.Method.Name] = results_by_size;
             }
 
-            Utils.IterateResultsDictionary(results_by_method, results_to_csv: true);
+            Utils.IterateResultsDictionary(results_by_method, save_results, results_to_csv: true);
+        } // Pomiary dla wszystkich algorytmów oprócz QuickSorta
 
+        static void QuickSortTest(int measurement_points, bool save_results = false)
+        {
+            ArrayList results = new ArrayList();
+
+            String[] pivot_positions = { "random", "left", "right", "middle" };
+
+            IEnumerable<int> sizes_range = Enumerable.Range(1, measurement_points).Select(x => 2500 * x);
+
+            results.Add("Pivot," + "Typ," + "Rozmiar," + "Czas" + Environment.NewLine);
+
+            int[] arr;
+            long time;
+
+            foreach(String pivot_position in pivot_positions)
+            {
+                foreach (String type in new []{ "recurrent", "iterative" } ){
+
+                    foreach (int size in sizes_range)
+                    {
+                        arr = Utils.InitArray<int>(size, "random");
+                        time = Utils.TimeMeasurement(arr, type, pivot_position);
+
+                        results.Add(pivot_position + "," + type + "," + size + "," + time + Environment.NewLine);
+                    }
+                }
+            }
+
+            foreach(String line in results)
+            {
+                Console.Write(line);
+            }
+
+            if (save_results == true)
+                Utils.WriteDataToFile(results, Utils.PATH, "pomiary_quicksort", save_results);
+        }
+
+        static void Main(string[] args)
+        {
+
+            SortingMethodsTest(20, false);
+            QuickSortTest(20, false);
+
+            Console.ReadKey();
         }
     }
 }

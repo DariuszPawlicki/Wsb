@@ -1,0 +1,81 @@
+------------------------------------------------------------
+Polecenie 2.
+
+
+I.
+
+
+Z³o¿onoœæ obliczeniowa:
+
+a) Cocktail Sort - W przypadku zwiêkszenia siê rozmiaru tablicy wejœciowej czas sortowania mo¿e wyd³u¿yæ siê znacz¹co.
+
+Doœæ istotny wp³yw na szybkoœæ sortowania algorytmu ma sposób u³o¿enia danych wejœciowych.
+Najgorszy przypadek - ci¹g malej¹cy - jest o 1/3 czasu d³u¿szy od przypadku, w którym
+dane wejœciowe s¹ ju¿ czêœciowo posortowane - V-kszta³ny ci¹g.
+
+Z³o¿onoœæ obliczeniowa dla ci¹gów sta³ych i rosn¹cych jest sta³a, gdy¿ ci¹gi s¹ ju¿ posortowane,
+wiêc jedynym zadaniem algorytmu jest przeiterowanie ca³ej tablicy, co zajmuje O(n) czasu, dla
+pozosta³ych ci¹gów jest to z³o¿onoœæ O(n^2)
+
+
+b) Heap Sort - Zwiêkszanie siê rozmiaru tablicy wejœciowej nie ma istotnego wp³ywu na czas sortowania.
+
+Sposób u³o¿enia danych wejœciowych nie ma istotnego wp³ywu na czas sortowania.
+
+Z³o¿onoœæ obliczeniowa dla wszystkich typów ci¹gów jest rzêdu O(N log N).
+
+
+b) Heap Sort - Zwiêkszanie siê rozmiaru tablicy wejœciowej nie ma istotnego wp³ywu na czas sortowania.
+
+Sposób u³o¿enia danych wejœciowych nie ma istotnego wp³ywu na czas sortowania.
+
+Z³o¿onoœæ obliczeniowa dla wszystkich typów ci¹gów jest rzêdu O(N log N).
+
+
+c) Insertion Sort - Zwiêkszanie siê rozmiaru tablicy wejœciowej ma du¿y wp³yw na czas sortowania.
+
+W tym przypadku, czas sortowania najlepszego - losowego - przypadku jest ponad 2 razy krótszy od czasu sortowania
+
+przypadku najgorszego - malej¹cego.
+
+
+Z³o¿onoœæ obliczeniowa dla ci¹gów rosn¹cych i sta³ych to O(n), 
+
+dla wszystkich innych O(n^2).
+
+
+d) Selection Sort - Zwiêkszanie siê rozmiaru tablicy wejœciowej ma du¿y wp³yw na czas sortowania.
+
+W tym przypadku, czas sortowania najgorszego - malej¹cego - przypadku jest o 1/4 d³u¿sza od 
+
+czasu sortowania przypadku najlepszego.
+
+
+Z³o¿onoœæ obliczeniowa dla dowolnego typu ci¹gu w przypadku tego algorytmu, wynosi
+
+O(n^2).
+
+
+II.
+
+Typ sortowanych danych jest kluczowy dla szybkoœci sortowania ka¿dego typu algorytmu.
+
+Patrz¹c na wykresy wywnioskowaæ mo¿na, ¿e w przypadku sortowania danych typu Integer 
+
+czas tego sortowania jest krótszy - œrednio 2 krotnie - od czasu sortowania danych typu Double.
+
+
+------------------------------------------------------------
+------------------------------------------------------------
+
+Polecenie 3.
+
+Z³o¿onoœæ obliczeniowa algorytmu to œrednio O(N log N), dla najgorszego przypadku natomiast jest to O(n^2).
+
+Wybór klucza dla algorytmu Quick Sort, widocznie wp³ywa na szybkoœæ sortowania.
+
+W najgorszym przypadku - wybór klucza jest losowy - algorytm sortuje oko³o 2 razy d³u¿ej
+
+ni¿ w przypadku "rozs¹dniejszego" doboru klucza.
+
+------------------------------------------------------------

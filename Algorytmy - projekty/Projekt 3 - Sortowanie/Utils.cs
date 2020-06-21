@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SortingMethods;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,17 @@ namespace Utilities
 {
     public static class Utils
     {
+        public const String PATH = "C:\\Users\\Darek\\Desktop\\wsb\\Algorytmy - projekty\\Projekt 3 - Sortowanie\\";
+
         public static T[] InitArray<T>(int size, String init_type)
         {
             T[] arr = new T [size];
 
+            T item;
+
             if (init_type == "random")
             {
                 Random rnd = new Random(Guid.NewGuid().GetHashCode());
-
-                T item;
 
                 for (int i = 0; i < size; i++)
                 {
@@ -27,7 +30,6 @@ namespace Utilities
             }
             else if (init_type == "ascending")
             {
-                T item;
 
                 for (int i = 0; i < size; i++)
                 {
@@ -39,7 +41,6 @@ namespace Utilities
             {
                 int j = 0;
 
-                T item;
 
                 for (int i = size - 1; i >= 0; i--)
                 {
@@ -51,8 +52,6 @@ namespace Utilities
             }
             else if (init_type == "constant")
             {
-                T item;
-
                 for (int i = 0; i < size; i++)
                 {
                     item = (T)Convert.ChangeType(1, typeof(T));
@@ -115,7 +114,21 @@ namespace Utilities
             return watch.ElapsedMilliseconds;
         }
 
-        public static void IterateResultsDictionary(Object results, bool results_to_csv = false)
+        public static long TimeMeasurement(int[] arr, String sort, String pivot_position)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+            if (sort == "recurrent")
+                Sorting.QuickSortRecurrent(arr, 0, arr.Length - 1, pivot_position);
+            else
+                Sorting.QuickSortIterative(arr, pivot_position);
+
+            watch.Stop();
+
+            return watch.ElapsedMilliseconds;
+        }
+
+        public static void IterateResultsDictionary(Object results, bool save_results, bool results_to_csv = false)
         {
             String separator1 = new String('-', 30);
             String separator2 = new String('*', 30);
@@ -177,9 +190,8 @@ namespace Utilities
                 }
             }
 
-            String path = "C:\\Users\\Darek\\Desktop\\wsb\\Algorytmy - projekty\\Projekt 3 - Sortowanie\\";
-
-            WriteDataToFile(measurements, path, "pomiary_double", csv: results_to_csv);
+            if (save_results == true)
+                WriteDataToFile(measurements, PATH, "pomiary_double", csv: results_to_csv);
         }
 
         public static void WriteDataToFile(ArrayList data, String path, String filename, bool csv = false)
